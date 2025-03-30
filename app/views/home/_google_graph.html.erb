@@ -27,55 +27,11 @@
 </style>
   <script type="text/javascript">
     google.charts.load('current', {'packages':['corechart']});
-    // google.charts.setOnLoadCallback(drawChart);
-    google.charts.setOnLoadCallback(() => drawChart('daily')); // Default argument
-
-    function drawChart(type = 'daily') {
-
-      let data;
-      
-      if (type === 'daily') {
-        data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-      } else if (type === 'weekly') {
-        data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Week'],
-          ['Work',     55],
-          ['Eat',      14],
-          ['Commute',  10],
-          ['Watch TV', 10],
-          ['Sleep',    49]
-        ]);
-      } else if (type === 'monthly') {
-        data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Month'],
-          ['Work',     240],
-          ['Eat',      60],
-          ['Commute',  40],
-          ['Watch TV', 50],
-          ['Sleep',    210]
-        ]);
-      }
-
-      var options = {
-        title: `My ${type.charAt(0).toUpperCase() + type.slice(1)} Activities`
-      };
-
-      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-      chart.draw(data, options);
-    }
   </script>
 <% end %>
 <div class="flex space-x-4">
-  <button onclick="drawChart('daily')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Daily</button>
-  <button onclick="drawChart('weekly')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Weekly</button>
-  <button onclick="drawChart('monthly')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Monthly</button>
+  <button data-action="click->hello#chart" data-hello-chart-param="daily" class="px-4 py-2 bg-gray-500 text-white rounded">Daily</button>
+  <button data-action="click->hello#chart" data-hello-chart-param="weekly" class="px-4 py-2 bg-gray-500 text-white rounded">Weekly</button>
+  <button data-action="click->hello#chart" data-hello-chart-param="monthly" class="px-4 py-2 bg-gray-500 text-white rounded">Monthly</button>
 </div>
 <div id="piechart" style="width: 900px; height: 500px;"></div>
